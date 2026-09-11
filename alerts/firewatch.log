@@ -1,0 +1,146 @@
+2026-09-11 17:45:47,012  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 17:46:21,401  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 17:50:23,804  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 17:50:28,401  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 17:50:31,310  INFO    firewatch.detector  Loading model fire_smoke.pt on device 'cpu' ...
+2026-09-11 17:50:31,568  INFO    firewatch.detector  Model classes: ['fire', 'other', 'smoke']
+2026-09-11 17:50:31,570  INFO    firewatch.detector  Class mapping: {'fire': 'fire', 'smoke': 'smoke'}
+2026-09-11 17:50:31,573  INFO    firewatch.main  Watching for: fire 5/15@0.35, smoke 9/20@0.45
+2026-09-11 17:50:31,576  INFO    firewatch.main  Press Q in the window to stop.
+2026-09-11 17:50:32,292  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 17:55:03,336  INFO    firewatch.main  Interrupted.
+2026-09-11 17:56:02,715  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 17:56:05,373  INFO    firewatch.detector  Loading model fire_smoke.pt on device 'cpu' ...
+2026-09-11 17:56:05,436  INFO    firewatch.detector  Model classes: ['fire', 'other', 'smoke']
+2026-09-11 17:56:05,436  INFO    firewatch.detector  Class mapping: {'fire': 'fire', 'smoke': 'smoke'}
+2026-09-11 17:56:05,436  INFO    firewatch.main  Watching for: fire 2/15@0.10, smoke 9/20@0.45
+2026-09-11 17:56:05,436  INFO    firewatch.main  Press Q in the window to stop.
+2026-09-11 17:56:06,016  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 17:56:09,012  DEBUG   firewatch.detector  Ignoring unmapped class 'other'
+2026-09-11 17:56:48,144  INFO    firewatch.main  Interrupted.
+2026-09-11 18:00:47,387  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 18:00:49,920  INFO    firewatch.detector  Loading model fire_smoke.pt on device 'cpu' ...
+2026-09-11 18:00:49,999  INFO    firewatch.detector  Model classes: ['fire', 'other', 'smoke']
+2026-09-11 18:00:49,999  INFO    firewatch.detector  Class mapping: {'fire': 'fire', 'smoke': 'smoke'}
+2026-09-11 18:00:49,999  INFO    firewatch.main  Watching for: fire 5/15@0.35, smoke 9/20@0.45
+2026-09-11 18:00:49,999  INFO    firewatch.main  Press Q in the window to stop.
+2026-09-11 18:00:50,619  INFO    firewatch.source  Opened webcam 0  (640x480)
+2026-09-11 18:00:54,249  DEBUG   firewatch.detector  Ignoring unmapped class 'other'
+2026-09-11 18:00:56,057  DEBUG   firewatch.main  frame 8: fire:0.69, fire:0.19
+2026-09-11 18:00:57,334  DEBUG   firewatch.main  frame 13: fire:0.13
+2026-09-11 18:00:57,594  DEBUG   firewatch.main  frame 14: fire:0.30
+2026-09-11 18:00:57,859  DEBUG   firewatch.main  frame 15: fire:0.13
+2026-09-11 18:00:58,152  DEBUG   firewatch.main  frame 16: fire:0.31
+2026-09-11 18:00:58,390  DEBUG   firewatch.main  frame 17: fire:0.31
+2026-09-11 18:00:58,663  DEBUG   firewatch.main  frame 18: fire:0.11
+2026-09-11 18:00:58,929  DEBUG   firewatch.main  frame 19: fire:0.12
+2026-09-11 18:00:59,190  DEBUG   firewatch.main  frame 20: fire:0.13
+2026-09-11 18:00:59,466  DEBUG   firewatch.main  frame 21: fire:0.07
+2026-09-11 18:00:59,728  DEBUG   firewatch.main  frame 22: fire:0.23
+2026-09-11 18:01:00,253  DEBUG   firewatch.main  frame 24: fire:0.06
+2026-09-11 18:01:00,562  DEBUG   firewatch.main  frame 25: fire:0.55
+2026-09-11 18:01:13,266  DEBUG   firewatch.main  frame 69: fire:0.37
+2026-09-11 18:01:13,572  DEBUG   firewatch.main  frame 70: fire:0.19
+2026-09-11 18:01:13,821  DEBUG   firewatch.main  frame 71: fire:0.09
+2026-09-11 18:01:14,083  DEBUG   firewatch.main  frame 72: fire:0.07
+2026-09-11 18:01:14,387  DEBUG   firewatch.main  frame 73: fire:0.08
+2026-09-11 18:01:14,691  DEBUG   firewatch.main  frame 74: fire:0.22
+2026-09-11 18:01:19,831  DEBUG   firewatch.main  frame 91: fire:0.52
+2026-09-11 18:01:20,424  DEBUG   firewatch.main  frame 93: fire:0.05
+2026-09-11 18:01:20,718  DEBUG   firewatch.main  frame 94: fire:0.13
+2026-09-11 18:01:22,524  DEBUG   firewatch.main  frame 100: fire:0.15
+2026-09-11 18:01:22,838  DEBUG   firewatch.main  frame 101: fire:0.11
+2026-09-11 18:01:23,090  DEBUG   firewatch.main  frame 102: fire:0.57
+2026-09-11 18:01:23,361  DEBUG   firewatch.main  frame 103: fire:0.41, fire:0.17, fire:0.10
+2026-09-11 18:01:23,621  DEBUG   firewatch.main  frame 104: fire:0.42, fire:0.15, fire:0.15
+2026-09-11 18:01:23,888  DEBUG   firewatch.main  frame 105: fire:0.40, fire:0.09, fire:0.07
+2026-09-11 18:01:23,896  WARNING firewatch.alerts  ALARM  FIRE  5/15 frames  peak 0.57
+2026-09-11 18:01:23,897  INFO    firewatch.alerts         snapshot -> D:\firewatch\alerts\snapshots\20260911_180123_fire.jpg
+2026-09-11 18:01:24,216  DEBUG   firewatch.main  frame 106: fire:0.38
+2026-09-11 18:01:24,434  DEBUG   firewatch.main  frame 107: fire:0.43
+2026-09-11 18:01:24,697  DEBUG   firewatch.main  frame 108: fire:0.42
+2026-09-11 18:01:24,964  DEBUG   firewatch.main  frame 109: fire:0.51, fire:0.08
+2026-09-11 18:01:25,231  DEBUG   firewatch.main  frame 110: fire:0.41
+2026-09-11 18:01:25,500  DEBUG   firewatch.main  frame 111: fire:0.47
+2026-09-11 18:01:25,776  DEBUG   firewatch.main  frame 112: fire:0.36
+2026-09-11 18:01:26,020  DEBUG   firewatch.main  frame 113: fire:0.37
+2026-09-11 18:01:26,285  DEBUG   firewatch.main  frame 114: fire:0.38
+2026-09-11 18:01:26,563  DEBUG   firewatch.main  frame 115: fire:0.47
+2026-09-11 18:01:26,829  DEBUG   firewatch.main  frame 116: fire:0.44
+2026-09-11 18:01:27,097  DEBUG   firewatch.main  frame 117: fire:0.41
+2026-09-11 18:01:27,396  DEBUG   firewatch.main  frame 118: fire:0.28
+2026-09-11 18:01:27,629  DEBUG   firewatch.main  frame 119: fire:0.32
+2026-09-11 18:01:27,900  DEBUG   firewatch.main  frame 120: fire:0.20
+2026-09-11 18:01:28,155  DEBUG   firewatch.main  frame 121: fire:0.16
+2026-09-11 18:01:28,419  DEBUG   firewatch.main  frame 122: fire:0.14
+2026-09-11 18:01:28,691  DEBUG   firewatch.main  frame 123: fire:0.22
+2026-09-11 18:01:28,954  DEBUG   firewatch.main  frame 124: fire:0.31
+2026-09-11 18:01:29,215  DEBUG   firewatch.main  frame 125: fire:0.26
+2026-09-11 18:01:29,499  DEBUG   firewatch.main  frame 126: fire:0.30
+2026-09-11 18:01:29,763  DEBUG   firewatch.main  frame 127: fire:0.25, fire:0.05
+2026-09-11 18:01:30,031  DEBUG   firewatch.main  frame 128: fire:0.39, fire:0.13
+2026-09-11 18:01:30,295  DEBUG   firewatch.main  frame 129: fire:0.53, fire:0.30
+2026-09-11 18:01:30,560  DEBUG   firewatch.main  frame 130: fire:0.48, fire:0.25
+2026-09-11 18:01:30,823  DEBUG   firewatch.main  frame 131: fire:0.47, fire:0.27
+2026-09-11 18:01:31,089  DEBUG   firewatch.main  frame 132: fire:0.46, fire:0.24
+2026-09-11 18:01:31,361  DEBUG   firewatch.main  frame 133: fire:0.47, fire:0.19
+2026-09-11 18:01:31,623  DEBUG   firewatch.main  frame 134: fire:0.55, fire:0.25
+2026-09-11 18:01:31,887  DEBUG   firewatch.main  frame 135: fire:0.57, fire:0.23
+2026-09-11 18:01:32,154  DEBUG   firewatch.main  frame 136: fire:0.62, fire:0.14
+2026-09-11 18:01:32,415  DEBUG   firewatch.main  frame 137: fire:0.68, fire:0.14
+2026-09-11 18:01:32,681  DEBUG   firewatch.main  frame 138: fire:0.69, fire:0.10
+2026-09-11 18:01:32,956  DEBUG   firewatch.main  frame 139: fire:0.61
+2026-09-11 18:01:33,222  DEBUG   firewatch.main  frame 140: fire:0.56
+2026-09-11 18:01:33,494  DEBUG   firewatch.main  frame 141: fire:0.71, fire:0.09
+2026-09-11 18:01:33,754  DEBUG   firewatch.main  frame 142: fire:0.69
+2026-09-11 18:01:34,027  DEBUG   firewatch.main  frame 143: fire:0.62
+2026-09-11 18:01:34,283  DEBUG   firewatch.main  frame 144: fire:0.49
+2026-09-11 18:01:34,552  DEBUG   firewatch.main  frame 145: fire:0.56
+2026-09-11 18:01:34,816  DEBUG   firewatch.main  frame 146: fire:0.31, fire:0.09
+2026-09-11 18:01:35,078  DEBUG   firewatch.main  frame 147: fire:0.64, fire:0.53
+2026-09-11 18:01:35,347  DEBUG   firewatch.main  frame 148: fire:0.71, fire:0.61, fire:0.13
+2026-09-11 18:01:35,611  DEBUG   firewatch.main  frame 149: fire:0.76, fire:0.74
+2026-09-11 18:01:35,882  DEBUG   firewatch.main  frame 150: fire:0.71, fire:0.63
+2026-09-11 18:01:36,174  DEBUG   firewatch.main  frame 151: fire:0.68, fire:0.55, fire:0.07
+2026-09-11 18:01:36,424  DEBUG   firewatch.main  frame 152: fire:0.68, fire:0.58, fire:0.23, fire:0.05
+2026-09-11 18:01:36,683  DEBUG   firewatch.main  frame 153: fire:0.69, fire:0.56, fire:0.09
+2026-09-11 18:01:36,944  DEBUG   firewatch.main  frame 154: fire:0.68, fire:0.47
+2026-09-11 18:01:37,211  DEBUG   firewatch.main  frame 155: fire:0.68, fire:0.51
+2026-09-11 18:01:37,483  DEBUG   firewatch.main  frame 156: fire:0.68, fire:0.37, fire:0.05
+2026-09-11 18:01:37,748  DEBUG   firewatch.main  frame 157: fire:0.70, fire:0.42
+2026-09-11 18:01:38,019  DEBUG   firewatch.main  frame 158: fire:0.74, fire:0.47, fire:0.08, fire:0.06
+2026-09-11 18:01:38,291  DEBUG   firewatch.main  frame 159: fire:0.76, fire:0.46, fire:0.09
+2026-09-11 18:01:38,553  DEBUG   firewatch.main  frame 160: fire:0.72, fire:0.46, fire:0.10
+2026-09-11 18:01:38,828  DEBUG   firewatch.main  frame 161: fire:0.59, fire:0.19, fire:0.12
+2026-09-11 18:01:39,093  DEBUG   firewatch.main  frame 162: fire:0.71, fire:0.21, fire:0.07
+2026-09-11 18:01:39,359  DEBUG   firewatch.main  frame 163: fire:0.56
+2026-09-11 18:01:39,626  DEBUG   firewatch.main  frame 164: fire:0.59, fire:0.16
+2026-09-11 18:01:39,893  DEBUG   firewatch.main  frame 165: fire:0.55, fire:0.05
+2026-09-11 18:01:40,162  DEBUG   firewatch.main  frame 166: fire:0.70, fire:0.24
+2026-09-11 18:01:40,426  DEBUG   firewatch.main  frame 167: fire:0.06, fire:0.06
+2026-09-11 18:01:40,682  DEBUG   firewatch.main  frame 168: fire:0.43, fire:0.12
+2026-09-11 18:01:41,510  DEBUG   firewatch.main  frame 171: fire:0.79
+2026-09-11 18:01:42,107  DEBUG   firewatch.main  frame 173: fire:0.51
+2026-09-11 18:01:42,397  DEBUG   firewatch.main  frame 174: fire:0.45
+2026-09-11 18:01:47,638  DEBUG   firewatch.main  frame 192: fire:0.11
+2026-09-11 18:01:48,482  DEBUG   firewatch.main  frame 195: fire:0.34
+2026-09-11 18:01:48,746  DEBUG   firewatch.main  frame 196: fire:0.12
+2026-09-11 18:01:49,015  DEBUG   firewatch.main  frame 197: fire:0.05
+2026-09-11 18:01:49,286  DEBUG   firewatch.main  frame 198: fire:0.18
+2026-09-11 18:01:49,547  DEBUG   firewatch.main  frame 199: fire:0.08
+2026-09-11 18:01:50,081  DEBUG   firewatch.main  frame 201: fire:0.11
+2026-09-11 18:01:50,347  DEBUG   firewatch.main  frame 202: fire:0.06
+2026-09-11 18:01:53,037  DEBUG   firewatch.main  frame 212: smoke:0.65, smoke:0.08
+2026-09-11 18:01:53,297  DEBUG   firewatch.main  frame 213: fire:0.55
+2026-09-11 18:01:53,832  DEBUG   firewatch.main  frame 215: fire:0.06
+2026-09-11 18:01:54,093  DEBUG   firewatch.main  frame 216: fire:0.40, fire:0.13, fire:0.09
+2026-09-11 18:01:54,371  DEBUG   firewatch.main  frame 217: fire:0.31, fire:0.09
+2026-09-11 18:01:54,615  DEBUG   firewatch.main  frame 218: fire:0.15, fire:0.06
+2026-09-11 18:01:54,889  DEBUG   firewatch.main  frame 219: fire:0.14, fire:0.14, fire:0.05
+2026-09-11 18:01:55,142  DEBUG   firewatch.main  frame 220: fire:0.17, fire:0.16, fire:0.10
+2026-09-11 18:01:55,415  DEBUG   firewatch.main  frame 221: fire:0.18, fire:0.17, fire:0.16
+2026-09-11 18:01:55,681  DEBUG   firewatch.main  frame 222: fire:0.52
+2026-09-11 18:02:01,925  DEBUG   firewatch.main  frame 242: fire:0.09
+2026-09-11 18:02:02,863  DEBUG   firewatch.main  frame 245: fire:0.12
+2026-09-11 18:02:03,185  DEBUG   firewatch.main  frame 246: fire:0.14
+2026-09-11 18:03:02,787  INFO    firewatch.main  Interrupted.
