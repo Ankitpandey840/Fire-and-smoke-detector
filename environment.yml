@@ -1,0 +1,44 @@
+# Firewatch - conda environment
+#
+# ONE COMMAND to install everything:
+#
+#     conda env create -f environment.yml
+#     conda activate firewatch
+#
+# Installs the CPU build of PyTorch, which is what you want for running
+# detection on a laptop or a plant PC. See the note at the bottom for GPU.
+
+name: firewatch
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - numpy>=1.24
+  - pyyaml>=6.0
+  - pip
+
+  # Installed via pip because PyTorch no longer publishes conda packages,
+  # and ultralytics/opencv are pip-only anyway.
+  - pip:
+      - torch>=2.2
+      - torchvision>=0.17
+      - ultralytics>=8.3.0
+      - opencv-python>=4.8.0
+      - huggingface_hub>=0.23.0
+
+# ---------------------------------------------------------------------------
+# On Windows the default torch wheel is already CPU-only - nothing to change.
+#
+# GPU (only needed if you want to TRAIN a model):
+#   1. run  nvidia-smi  and check the CUDA version shown top-right is 12.4+
+#   2. after creating the env, run:
+#        conda activate firewatch
+#        pip uninstall torch torchvision -y
+#        pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+#   3. set  model.device: 0  in config.yaml
+#
+# On Linux the default torch wheel bundles CUDA (~2.5 GB). For CPU only:
+#        pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# ---------------------------------------------------------------------------

@@ -1,0 +1,231 @@
+# =============================================================================
+# Firewatch configuration
+#
+# Everything the program does is controlled from this file. You should not
+# need to edit any Python to change behaviour.
+#
+# Run with:   python main.py
+# Or another config:   python main.py --config configs/plant_a.yaml
+# Any value can also be overridden from the command line, e.g.
+#   python main.py --set source.kind=webcam --set preview.enabled=true
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# VIDEO SOURCE
+# -----------------------------------------------------------------------------
+source:
+  # webcam | rtsp | file
+  #
+  # Start with "webcam" to check everything works on your laptop, then switch
+  # to "rtsp" for the real camera.
+  kind: webcam
+
+  # Used when kind = webcam. 0 is your built-in camera, 1 is usually the first
+  # USB camera. If the wrong camera opens, try 1, 2, ...
+  webcam_index: 0
+
+  # Used when kind = rtsp. Get this from your camera/NVR.
+  # Ask for the SUB-STREAM, not the main stream. You do not need 4K to see a
+  # fire, and decoding 4K will eat your CPU for nothing.
+  #   Hikvision : rtsp://user:pass@192.168.1.64:554/Streaming/Channels/102
+  #   Dahua     : rtsp://user:pass@192.168.1.108:554/cam/realmonitor?channel=1&subtype=1
+  #   CP Plus   : rtsp://user:pass@192.168.1.100:554/cam/realmonitor?channel=1&subtype=1
+  rtsp_url: "rtsp://user:password@192.168.1.64:554/Streaming/Channels/102"
+
+  # Used when kind = file. Handy for replaying a recorded clip.
+  file_path: "samples/test.mp4"
+
+  # Force TCP transport for RTSP. Leave true - UDP drops packets and you get
+  # a smeared, corrupted picture that ruins detection.
+  rtsp_use_tcp: true
+
+  # Process at most this many frames per second. Fire does not appear in
+  # 200 ms, so there is no reason to burn CPU at 25 fps. 3-5 is plenty.
+  # Set to 0 to process every frame.
+  target_fps: 4
+
+  # Seconds to wait before reconnecting after the stream drops.
+  # RTSP streams WILL drop. This is not optional for 24/7 running.
+  reconnect_delay_sec: 5
+
+  # Give up after this many consecutive failed reconnects (0 = never give up).
+  max_reconnect_attempts: 0
+
+
+# -----------------------------------------------------------------------------
+# MODEL
+# -----------------------------------------------------------------------------
+model:
+  # Path to your .pt or .onnx weights.
+  # Don't have any yet? Run:  python tools/fetch_model.py
+  weights: "weights/fire_smoke.pt"
+
+  # Inference resolution. 640 is standard. 416 is faster on weak hardware.
+  imgsz: 640
+
+  # cpu | cuda | 0 | mps | auto
+  # "auto" picks CUDA if available, otherwise CPU.
+  device: auto
+
+  # Detector confidence floor. Keep this LOW.
+  # The temporal window below is what filters out noise, not this number.
+  # Raising it here means the model never even reports the weak detection
+  # that three consecutive frames would have confirmed.
+  conf: 0.20
+
+  # NMS IoU threshold. Leave alone unless you know why you're changing it.
+  iou: 0.45
+
+  # Different published models name their classes differently
+  # ("Fire" / "fire" / "flame", "Smoke" / "smoke"). Map whatever your model
+  # outputs onto the two names Firewatch understands.
+  # Anything not listed here is ignored.
+  class_aliases:
+    fire: fire
+    Fire: fire
+    flame: fire
+    Flame: fire
+    flames: fire
+    smoke: smoke
+    Smoke: smoke
+
+
+# -----------------------------------------------------------------------------
+# DETECTION RULES  (per class)
+# -----------------------------------------------------------------------------
+# This is the section that decides whether the system is useful or annoying.
+#
+# Firewatch never alarms on a single frame. It keeps a sliding window of the
+# last `window` processed frames and raises the alarm only when `min_hits` of
+# them contained the class. A reflection or a welding flash lights up for one
+# or two frames; real fire persists.
+#
+#   window = 15, min_hits = 5, target_fps = 4  ->  needs ~1.25s of evidence
+#
+detection:
+  fire:
+    enabled: true
+    # Confidence a single box must clear to count as a "hit" for this frame.
+    conf: 0.35
+    window: 15
+    min_hits: 5
+
+  smoke:
+    enabled: true
+    # Smoke is the EARLIER warning but the noisier one - steam, dust and
+    # exhaust all live here. Stricter settings are deliberate.
+    # If your plant has visible steam or dust, set enabled: false at first
+    # and turn it on once fire detection is behaving.
+    conf: 0.45
+    window: 20
+    min_hits: 9
+
+  # Report whether the detected region is expanding across the window.
+  # A spreading fire grows; a reflection stays the same size. This is
+  # informational (logged and shown), not a gate - a small steady fire is
+  # still a fire.
+  growth_ratio_alert: 1.15
+
+
+# -----------------------------------------------------------------------------
+# ZONES  (optional)
+# -----------------------------------------------------------------------------
+# Ignore detections inside these rectangles. Use this to mask out a welding
+# bay, a furnace door, or a window where the sun hits every afternoon.
+# Coordinates are fractions of the frame (0.0 - 1.0), so they survive a
+# resolution change.
+zones:
+  enabled: false
+  ignore:
+    # - name: welding_bay
+    #   x1: 0.60
+    #   y1: 0.30
+    #   x2: 0.95
+    #   y2: 0.80
+
+
+# -----------------------------------------------------------------------------
+# ALARM
+# -----------------------------------------------------------------------------
+alarm:
+  # THE MOST IMPORTANT SETTING IN THIS FILE.
+  #
+  # false = shadow mode. Detects, logs, saves snapshots, but stays silent.
+  # Run in shadow mode for 2-4 weeks on the real camera FIRST. Count your
+  # false alarms per day. Only then turn the siren on.
+  sound_enabled: True
+
+  # beep | wav
+  #   beep - Windows only, uses winsound.Beep, needs no files
+  #   wav  - plays the file below (a siren is included)
+  sound_mode: wav
+  wav_file: "assets/alarm.wav"
+
+  # Used when sound_mode = beep
+  beep_freq_hz: 1000
+  beep_duration_ms: 400
+  beep_repeat: 6
+
+  # How long the siren keeps sounding, and how long before the SAME class
+  # is allowed to trigger again. Stops one event from screaming all night.
+  duration_sec: 10
+  cooldown_sec: 60
+
+  # Press A in the preview window to silence a sounding alarm.
+  allow_acknowledge: true
+
+  # Run an external program on alarm. Called as:
+  #     your_script <class> <snapshot_path> <confidence>
+  # Use this for WhatsApp / Telegram / ntfy / SMS / a GPIO relay.
+  # Leave empty to disable.
+  hook_command: ""
+
+
+# -----------------------------------------------------------------------------
+# PREVIEW WINDOW
+# -----------------------------------------------------------------------------
+preview:
+  # Set false for headless / unattended running on a plant PC.
+  enabled: true
+  window_name: "Firewatch"
+  # Shrink the display window. 1.0 = original size, 0.5 = half.
+  scale: 0.8
+  show_boxes: true
+  show_labels: true
+  show_fps: true
+  # The status panel with the per-class hit meters.
+  show_panel: true
+  # Draw a red border around the whole frame during an alarm.
+  flash_on_alarm: true
+
+# Keyboard shortcuts in the preview window:
+#   Q or ESC  quit
+#   A         acknowledge / silence the current alarm
+#   S         save a snapshot right now
+#   P         pause / resume
+
+
+# -----------------------------------------------------------------------------
+# OUTPUT & LOGGING
+# -----------------------------------------------------------------------------
+output:
+  dir: "alerts"
+  # Append every alarm to alerts/alerts.csv
+  csv_log: true
+  # Save a clean (un-annotated) JPEG on every alarm.
+  save_snapshot: true
+  # Also save a copy with boxes drawn, for reviewing later.
+  save_annotated: true
+  # Record the N seconds leading up to an alarm. Costs memory (it keeps a
+  # rolling buffer in RAM). 0 disables.
+  clip_seconds_before: 0
+
+logging:
+  # DEBUG | INFO | WARNING
+  # DEBUG prints every frame's raw detections - useful while tuning, far too
+  # noisy to leave on.
+  level: INFO
+  # Write the same output to a rotating file.
+  to_file: true
+  file: "alerts/firewatch.log"

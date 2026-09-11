@@ -1,0 +1,26 @@
+# Firewatch dependencies - install with:
+#     pip install -r requirements.txt
+#
+# Note on torch: on WINDOWS the default PyPI wheel is already the CPU build,
+# which is what you want. You only need the special PyTorch index if you have
+# an NVIDIA GPU and intend to TRAIN - see the bottom of this file.
+# On LINUX the default wheel bundles CUDA and is ~2.5 GB.
+
+torch>=2.2
+torchvision>=0.17
+
+ultralytics>=8.3.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+PyYAML>=6.0
+huggingface_hub>=0.23.0
+
+# ---------------------------------------------------------------------------
+# GPU (training only). Check `nvidia-smi` shows CUDA 12.4+, then instead run:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+#   pip install ultralytics opencv-python numpy PyYAML huggingface_hub
+# and set  model.device: 0  in config.yaml
+#
+# CPU-only on Linux (avoids the 2.5 GB CUDA download):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# ---------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+weights/
+alerts/
+runs/
+data/
+hard_negatives_review/
+*.mp4
+*.avi
+.venv/
